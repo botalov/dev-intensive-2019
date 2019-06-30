@@ -3,6 +3,7 @@ package ru.skillbranch.devintensive
 import org.junit.Test
 import org.junit.Assert.*
 import ru.skillbranch.devintensive.models.User
+import java.util.*
 
 class UserTests {
 
@@ -25,4 +26,26 @@ class UserTests {
         assertEquals("", user4.lastName)
     }
 
+    @Test
+    fun builder_test() {
+        val user = User.Builder()
+            .id("142")
+            .firstName("Tom")
+            .lastName("Soyer")
+            .avatar("https://avatar.jpg")
+            .rating(100)
+            .respect(51)
+            .lastVisit(Date())
+            .isOnline(true)
+            .build()
+
+        assertEquals("142", user.id)
+        assertEquals("Tom", user.firstName)
+        assertEquals("Soyer", user.lastName)
+        assertEquals("https://avatar.jpg", user.avatar)
+        assertEquals(100, user.rating)
+        assertEquals(51, user.respect)
+        assertEquals(true, user.isOnline)
+
+    }
 }

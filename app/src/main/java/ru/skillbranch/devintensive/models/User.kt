@@ -11,19 +11,18 @@ class User (
     var rating : Int = 0,
     var respect : Int = 0,
     var lastVisit : Date? = Date(),
-    var isOnline : Boolean = false)
-{
+    var isOnline : Boolean = false) {
 
-    constructor(id:String, firstName: String?, lastName: String?) : this(
+    constructor(id: String, firstName: String?, lastName: String?) : this(
         id = id,
         firstName = firstName,
         lastName = lastName,
         avatar = null
     )
 
-    companion object Factory{
+    companion object {
         private var lastId = -1
-        fun makeUser(fullName: String?) : User{
+        fun makeUser(fullName: String?): User {
             lastId++
 
 
@@ -31,9 +30,16 @@ class User (
             val firstName = fullNamePair.first
             val lastName = fullNamePair.second
 
-            return User("$lastId",
-                if(firstName.isNullOrEmpty()) "" else firstName,
-                if(lastName.isNullOrEmpty()) "" else lastName)
+            return User(
+                "$lastId",
+                if (firstName.isNullOrEmpty()) "" else firstName,
+                if (lastName.isNullOrEmpty()) "" else lastName
+            )
+        }
+
+
+        fun Builder() : UserBuilder {
+            return UserBuilder()
         }
     }
 }
