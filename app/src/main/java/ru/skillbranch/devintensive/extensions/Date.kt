@@ -179,8 +179,6 @@ fun Date.humanizeDiff() : String{
             }
         }
     }
-
-    println(res)
     return res
 }
 
