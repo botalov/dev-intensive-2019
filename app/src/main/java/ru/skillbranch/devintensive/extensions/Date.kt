@@ -3,7 +3,6 @@ package ru.skillbranch.devintensive.extensions
 import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
 private const val SECOND = 1000L
@@ -17,20 +16,26 @@ fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy") : String{
 }
 
 
-fun Date.add(value: Int, units: TimeUnit = TimeUnit.SECONDS): Date {
+fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
     var time = this.time
 
     time += when(units) {
-        TimeUnit.SECONDS -> value * SECOND
-        TimeUnit.MINUTES -> value * MINUTE
-        TimeUnit.HOURS -> value * HOUR
-        TimeUnit.DAYS -> value * DAY
+        TimeUnits.SECOND -> value * SECOND
+        TimeUnits.MINUTE -> value * MINUTE
+        TimeUnits.HOUR -> value * HOUR
+        TimeUnits.DAY -> value * DAY
         else -> throw IllegalStateException("invalid units")
     }
     this.time = time
     return this
 }
 
+enum class TimeUnits {
+    SECOND,
+    MINUTE,
+    HOUR,
+    DAY
+}
 
 fun Date.humanizeDiff() : String{
     val time = this.time
