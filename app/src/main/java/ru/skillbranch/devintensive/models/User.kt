@@ -4,7 +4,7 @@ import ru.skillbranch.devintensive.utils.Utils
 import java.lang.Exception
 import java.util.*
 
-class User (
+data class User (
     val id : String,
     var firstName : String?,
     var lastName : String?,
