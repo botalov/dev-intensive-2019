@@ -37,70 +37,40 @@ class User (
                 if (lastName.isNullOrEmpty()) "" else lastName
             )
         }
+    }
+
+    data class Builder (
+            var id: String? = null,
+            var firstName: String? = null,
+            var lastName: String? = null,
+            var avatar: String? = null,
+            var rating: Int = 0,
+            var respect: Int = 0,
+            var lastVisit: Date? = Date(),
+            var isOnline: Boolean = false) {
+
+        fun id(id: String) = apply { this.id = id }
+
+        fun firstName(firstName: String) = apply {this.firstName = firstName}
+
+        fun lastName(lastName: String) = apply { this.lastName = lastName }
+
+        fun avatar(avatar: String) = apply { this.avatar = avatar }
+
+        fun rating(rating: Int) = apply { this.rating = rating }
+
+        fun respect(respect: Int) = apply { this.respect = respect }
+
+        fun lastVisit(lastVisit: Date) = apply { this.lastVisit = lastVisit }
+
+        fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline }
 
 
-        fun Builder(): UserBuilder {
-            return UserBuilder()
-        }
-
-
-        class UserBuilder {
-            private var id: String? = null
-            private var firstName: String? = null
-            private var lastName: String? = null
-            private var avatar: String? = null
-            private var rating: Int = 0
-            private var respect: Int = 0
-            private var lastVisit: Date? = Date()
-            private var isOnline: Boolean = false
-
-            fun id(value: String): UserBuilder {
-                id = value
-                return this
+        fun build(): User {
+            if (id.isNullOrEmpty()) {
+                throw Exception("id is null")
             }
-
-            fun firstName(value: String): UserBuilder {
-                firstName = value
-                return this
-            }
-
-            fun lastName(value: String): UserBuilder {
-                lastName = value
-                return this
-            }
-
-            fun avatar(value: String): UserBuilder {
-                avatar = value
-                return this
-            }
-
-            fun rating(value: Int): UserBuilder {
-                rating = value
-                return this
-            }
-
-            fun respect(value: Int): UserBuilder {
-                respect = value
-                return this
-            }
-
-            fun lastVisit(value: Date): UserBuilder {
-                lastVisit = value
-                return this
-            }
-
-            fun isOnline(value: Boolean): UserBuilder {
-                isOnline = value
-                return this
-            }
-
-
-            fun build(): User {
-                if (id.isNullOrEmpty()) {
-                    throw Exception("id is null")
-                }
-                return User(id!!, firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
-            }
+            return User(id!!, firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
         }
     }
 }
