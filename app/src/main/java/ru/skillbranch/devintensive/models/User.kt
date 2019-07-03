@@ -40,7 +40,7 @@ class User (
     }
 
     data class Builder (
-            var id: String = "",
+            var id: String? = null,
             var firstName: String? = null,
             var lastName: String? = null,
             var avatar: String? = null,
@@ -65,6 +65,6 @@ class User (
 
         fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline }
 
-        fun build(): User = User(id, firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
+        fun build(): User = User(id?: (++lastId).toString(), firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
     }
 }
