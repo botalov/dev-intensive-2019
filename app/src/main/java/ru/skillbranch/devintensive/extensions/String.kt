@@ -9,3 +9,8 @@ fun String.truncate(length: Int = 16) : String {
 
     return sourceString.substring(0, length).trim() + "..."
 }
+
+fun String.stripHtml() : String {
+    val str = this.replace(Regex("\\<[^>]*>") ,"")
+    return str.replace(Regex(" {2}") ,"")
+}
