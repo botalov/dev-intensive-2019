@@ -12,5 +12,5 @@ fun String.truncate(length: Int = 16) : String {
 
 fun String.stripHtml() : String {
     val str = this.replace(Regex("\\<[^>]*>") ,"")
-    return str.replace(Regex(" {2}") ,"")
+    return str.replace(Regex(" {2}") ,"").trim()
 }

@@ -34,62 +34,62 @@ enum class TimeUnits {
     SECOND,
     MINUTE,
     HOUR,
-    DAY
-}
+    DAY;
 
-fun TimeUnits.plural(value: Int) : String{
-    val absValue = abs(value)
-    when(this) {
-        TimeUnits.SECOND -> {
-            return if(absValue % 10 in 2..4) {
-                if(absValue % 100 in 11..19) {
-                    "$absValue секунд назад"
-                } else {
-                    "$absValue секунды назад"
+    fun plural(value: Int) : String{
+        val absValue = abs(value)
+        when(this) {
+            SECOND -> {
+                return if(absValue % 10 in 2..4) {
+                    if(absValue % 100 in 11..19) {
+                        "$absValue секунд назад"
+                    } else {
+                        "$absValue секунды назад"
+                    }
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                    "$absValue секнуду назад"
+                } else{
+                    "$absValue секнуд назад"
                 }
-            } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                "$absValue секнуду назад"
-            } else{
-                "$absValue секнуд назад"
             }
-        }
-        TimeUnits.MINUTE -> {
-            return if(absValue % 10 in 2..4) {
-                if(absValue % 100 in 11..19) {
+            MINUTE -> {
+                return if(absValue % 10 in 2..4) {
+                    if(absValue % 100 in 11..19) {
+                        "$absValue минут назад"
+                    } else {
+                        "$absValue минуты назад"
+                    }
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                    "$absValue минуту назад"
+                } else{
                     "$absValue минут назад"
-                } else {
-                    "$absValue минуты назад"
                 }
-            } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                "$absValue минуту назад"
-            } else{
-                "$absValue минут назад"
             }
-        }
-        TimeUnits.HOUR -> {
-            return if(absValue % 10 in 2..4) {
-                if(absValue % 100 in 11..19) {
+            HOUR -> {
+                return if(absValue % 10 in 2..4) {
+                    if(absValue % 100 in 11..19) {
+                        "$absValue часов назад"
+                    } else {
+                        "$absValue часа назад"
+                    }
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                    "$absValue час назад"
+                } else{
                     "$absValue часов назад"
-                } else {
-                    "$absValue часа назад"
                 }
-            } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                "$absValue час назад"
-            } else{
-                "$absValue часов назад"
             }
-        }
-        TimeUnits.DAY -> {
-            return if(absValue % 10 in 2..4) {
-                if(absValue % 100 in 11..19) {
+            DAY -> {
+                return if(absValue % 10 in 2..4) {
+                    if(absValue % 100 in 11..19) {
+                        "$absValue дней назад"
+                    } else {
+                        "$absValue дня назад"
+                    }
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                    "$absValue день назад"
+                } else{
                     "$absValue дней назад"
-                } else {
-                    "$absValue дня назад"
                 }
-            } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                "$absValue день назад"
-            } else{
-                "$absValue дней назад"
             }
         }
     }
