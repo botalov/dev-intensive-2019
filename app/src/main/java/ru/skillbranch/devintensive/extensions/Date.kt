@@ -46,10 +46,10 @@ enum class TimeUnits {
                     } else {
                         "$value секунды"
                     }
-                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue%100 != 11) {
                     "$value секунду"
                 } else{
-                    "$value секнуд"
+                    "$value секунд"
                 }
             }
             MINUTE -> {
@@ -59,7 +59,7 @@ enum class TimeUnits {
                     } else {
                         "$value минуты"
                     }
-                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue%100 != 11) {
                     "$value минуту"
                 } else{
                     "$value минут"
@@ -72,7 +72,7 @@ enum class TimeUnits {
                     } else {
                         "$value часа"
                     }
-                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue%100 != 11) {
                     "$value час"
                 } else{
                     "$value часов"
@@ -85,7 +85,7 @@ enum class TimeUnits {
                     } else {
                         "$value дня"
                     }
-                } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
+                } else if((absValue%10 == 1 || absValue%100 == 1)&& absValue%100 != 11) {
                     "$value день"
                 } else{
                     "$value дней"
