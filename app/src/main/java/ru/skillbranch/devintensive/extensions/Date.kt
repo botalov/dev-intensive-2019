@@ -47,7 +47,7 @@ enum class TimeUnits {
                         "$value секунды"
                     }
                 } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                    "$value секнуду"
+                    "$value секунду"
                 } else{
                     "$value секнуд"
                 }
