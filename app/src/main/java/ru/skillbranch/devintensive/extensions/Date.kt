@@ -42,53 +42,53 @@ enum class TimeUnits {
             SECOND -> {
                 return if(absValue % 10 in 2..4) {
                     if(absValue % 100 in 11..19) {
-                        "$absValue секунд назад"
+                        "$value секунд"
                     } else {
-                        "$absValue секунды назад"
+                        "$value секунды"
                     }
                 } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                    "$absValue секнуду назад"
+                    "$value секнуду"
                 } else{
-                    "$absValue секнуд назад"
+                    "$value секнуд"
                 }
             }
             MINUTE -> {
                 return if(absValue % 10 in 2..4) {
                     if(absValue % 100 in 11..19) {
-                        "$absValue минут назад"
+                        "$value минут"
                     } else {
-                        "$absValue минуты назад"
+                        "$value минуты"
                     }
                 } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                    "$absValue минуту назад"
+                    "$value минуту"
                 } else{
-                    "$absValue минут назад"
+                    "$value минут"
                 }
             }
             HOUR -> {
                 return if(absValue % 10 in 2..4) {
                     if(absValue % 100 in 11..19) {
-                        "$absValue часов назад"
+                        "$value часов"
                     } else {
-                        "$absValue часа назад"
+                        "$value часа"
                     }
                 } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                    "$absValue час назад"
+                    "$value час"
                 } else{
-                    "$absValue часов назад"
+                    "$value часов"
                 }
             }
             DAY -> {
                 return if(absValue % 10 in 2..4) {
                     if(absValue % 100 in 11..19) {
-                        "$absValue дней назад"
+                        "$value дней"
                     } else {
-                        "$absValue дня назад"
+                        "$value дня"
                     }
                 } else if((absValue%10 == 1 || absValue%100 == 1) && absValue != 11 && absValue != 111) {
-                    "$absValue день назад"
+                    "$value день"
                 } else{
-                    "$absValue дней назад"
+                    "$value дней"
                 }
             }
         }
