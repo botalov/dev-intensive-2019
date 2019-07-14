@@ -20,6 +20,28 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         }
     }
 
+    fun validateAnswer(question: Question, answer: String) : Boolean {
+        return when(question) {
+            Question.NAME -> answer[0].isUpperCase()
+            Question.PROFESSION -> answer[0].isLowerCase()//"Профессия должна начинаться со строчной буквы"
+            Question.MATERIAL -> !answer.contains(Regex("^[0-9]*\$"))//"Материал не должен содержать цифр"
+            Question.BDAY -> answer.contains(Regex("^[0-9]*\$"))//"Год моего рождения должен содержать только цифры"
+            Question.SERIAL -> answer.length == 7 && answer.contains(Regex("^[0-9]*\$"))//"Серийный номер содержит только цифры, и их 7"
+            Question.IDLE -> true//""
+        }
+    }
+
+    fun getErrorValidateMessage(question: Question) : String {
+        return when(question) {
+            Question.NAME -> "Имя должно начинаться с заглавной буквы"
+            Question.PROFESSION -> "Профессия должна начинаться со строчной буквы"
+            Question.MATERIAL -> "Материал не должен содержать цифр"
+            Question.BDAY -> "Год моего рождения должен содержать только цифры"
+            Question.SERIAL -> "Серийный номер содержит только цифры, и их 7"
+            Question.IDLE -> ""
+        }
+    }
+
 
     enum class Status(val color: Triple<Int, Int, Int>) {
         NORMAL(Triple(255, 255, 255)) ,
