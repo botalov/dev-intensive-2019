@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,6 +29,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textTxt = tv_text
         messageEt = et_message
         sendBtn = iv_send
+
+        messageEt.setOnEditorActionListener { _, actionId, _ ->
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                this.hideKeyboard()
+                true
+            } else {
+                false
+            }
+        }
+
+
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
