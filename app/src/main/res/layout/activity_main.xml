@@ -24,7 +24,6 @@
             android:src="@drawable/bender_dance"/>
 
     <LinearLayout
-            android:id="@+id/ll_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -48,6 +47,7 @@
         />
 
         <ImageView
+                android:id="@+id/iv_send"
                 android:layout_width="@dimen/spacing_large_24"
                 android:layout_height="@dimen/spacing_large_24"
                 android:src="@drawable/ic_send_black_24dp"
