@@ -12,6 +12,10 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     }
 
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>> {
+        if(!validateAnswer(answer)) {
+            return getErrorValidateMessage() to status.color
+        }
+
         return if (question.answers.contains(answer)) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
@@ -20,7 +24,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         }
     }
 
-    fun validateAnswer(question: Question, answer: String) : Boolean {
+    fun validateAnswer(answer: String) : Boolean {
         return when(question) {
             Question.NAME -> answer[0].isUpperCase()
             Question.PROFESSION -> answer[0].isLowerCase()//"Профессия должна начинаться со строчной буквы"
@@ -31,7 +35,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         }
     }
 
-    fun getErrorValidateMessage(question: Question) : String {
+    fun getErrorValidateMessage() : String {
         return when(question) {
             Question.NAME -> "Имя должно начинаться с заглавной буквы"
             Question.PROFESSION -> "Профессия должна начинаться со строчной буквы"
