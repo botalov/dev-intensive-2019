@@ -61,11 +61,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onClickEvent() {
-        val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
-        messageEt.setText("")
-        val (r,g,b) = color
-        benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
-        textTxt.text = phrase
+        if(messageEt.text.isNotEmpty()) {
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
+            messageEt.setText("")
+            val (r, g, b) = color
+            benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+            textTxt.text = phrase
+        }
 
         this.hideKeyboard()
     }
