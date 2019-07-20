@@ -16,11 +16,19 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             return getErrorValidateMessage() to status.color
         }
 
-        return if (question.answers.contains(answer)) {
+        return if (question.answers.contains(answer.toLowerCase())) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else {
-            "Это не правильный ответ!" to status.color
+            if(status == Status.CRITICAL) {
+                status = Status.NORMAL
+                question = Question.NAME
+                "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+            }
+            else {
+                status = status.nextStatus()
+                "Это неправильный ответ\n${question.question}" to status.color
+            }
         }
     }
 
@@ -64,7 +72,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     }
 
     enum class Question(val question: String, val answers: List<String>) {
-        NAME("Как меня зовут?", listOf("Бендер", "bender")),
+        NAME("Как меня зовут?", listOf("бендер", "bender")),
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")),
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")),
         BDAY("Когда меня создали?", listOf("2993")),

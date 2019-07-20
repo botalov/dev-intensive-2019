@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
 
         textTxt.text = benderObj.askQuestion()
+        val (r,g,b) = benderObj.status.color
+        benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
 
         sendBtn.setOnClickListener(this)
     }
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v?.id == sendBtn.id) {
-            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
             messageEt.setText("")
             val (r,g,b) = color
             benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
