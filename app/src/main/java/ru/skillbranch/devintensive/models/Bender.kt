@@ -13,7 +13,11 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
 
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>> {
         if(!validateAnswer(answer)) {
-            return getErrorValidateMessage() to status.color
+            return getErrorValidateMessage() + "\n${question.question}" to status.color
+        }
+
+        if(question == Question.IDLE) {
+            return question.question to status.color
         }
 
         return if (question.answers.contains(answer.toLowerCase())) {
@@ -36,7 +40,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         return when(question) {
             Question.NAME -> answer[0].isUpperCase()
             Question.PROFESSION -> answer[0].isLowerCase()//"Профессия должна начинаться со строчной буквы"
-            Question.MATERIAL -> !answer.contains(Regex("^[0-9]*\$"))//"Материал не должен содержать цифр"
+            Question.MATERIAL -> answer.contains(Regex("^[^0-9]+\$"))//"Материал не должен содержать цифр"
             Question.BDAY -> answer.contains(Regex("^[0-9]*\$"))//"Год моего рождения должен содержать только цифры"
             Question.SERIAL -> answer.length == 7 && answer.contains(Regex("^[0-9]*\$"))//"Серийный номер содержит только цифры, и их 7"
             Question.IDLE -> true//""

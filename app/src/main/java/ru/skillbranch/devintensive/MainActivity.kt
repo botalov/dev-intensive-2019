@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         messageEt.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
-                this.hideKeyboard()
+                onClickEvent()
                 true
             } else {
                 false
@@ -56,14 +56,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v?.id == sendBtn.id) {
-            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
-            messageEt.setText("")
-            val (r,g,b) = color
-            benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
-            textTxt.text = phrase
-
-            this.hideKeyboard()
+            onClickEvent()
         }
+    }
+
+    private fun onClickEvent() {
+        val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
+        messageEt.setText("")
+        val (r,g,b) = color
+        benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
+        textTxt.text = phrase
+
+        this.hideKeyboard()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
